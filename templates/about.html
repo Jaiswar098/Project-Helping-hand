@@ -1,0 +1,54 @@
+{% extends "layout/base.html" %}
+{% load i18n %}
+{% load account socialaccount %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+    {% block content %}
+{% load static%}
+<section class="vh-100" style="background-color: #9A616D;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-start h-100">
+          <div class="col col-xl-10">
+            <div class="card" style="border-radius: 1rem;">
+              <div class="row g-0">
+                <div class="col-md-6 col-lg-5 d-none d-md-block">
+                <img src="{% static 'images/laptop2.jpeg' %}"
+                    alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+                </div>
+                <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                    <div class="card-body p-4 p-lg-5 text-black">
+     <form class="login card-body" ">   
+          <p style="text-align: start; font-size: medium;"> 
+Welcome to <b> helping hand </b>, a platform that connects job seekers with the 
+ latest job opportunities from top employers in various industries. 
+  Our goal is to simplify the job search process for candidates and
+  provide employers with a streamlined hiring process. <br> 
+<br>
+At Helping Hand, we believe that finding the right job can change lives and transform businesses. <br>
+ That's why we are committed to delivering the best possible experience for our users.
+  We have built a user-friendly interface that makes it easy to search for jobs 
+  and apply for positions that match your skills and experience. For employers,
+   our platform provides a range of tools and resources that simplify the hiring process,
+    from posting job vacancies to managing applications.
+<br><br>
+Example –<b> Plumbers, Electricians, Ironworker, Labourer etc.</b>
+<br>
+We are constantly improving our platform to ensure that we stay ahead of the curve 
+ provide our users with the best experience. We are committed to being a reliable
+  partner for job seekers and employers alike and look forward to helping you achieve your goals.
+
+</p>
+</dir>
+</div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<style>
+    body{
+         background-color: #9A616D; 
+    }
+</style>
+{% endblock %}
+6

@@ -1,0 +1,41 @@
+{% extends "layout/base.html" %}
+{% load i18n %}
+{% load account socialaccount %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+    {% block content %}
+{% load static%}
+<section class="vh-100" style="background-color: #9A616D;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-start h-100">
+          <div class="col col-xl-10">
+            <div class="card" style="border-radius: 1rem;">
+              <div class="row g-0">
+                <div class="col-md-6 col-lg-5 d-none d-md-block">
+                <img src="{% static 'images/laptop2.jpeg' %}"
+                    alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+                </div>
+                <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                    <div class="card-body p-4 p-lg-5 text-black">
+     <form class="login card-body" "> 
+           <h3 class="text-white">Contact Information</h3>
+           <img src="{% static 'images/rohan.jpeg' %}"" alt="rohan"width="200px"height ="200px"> <br><br>
+           <p style="font-size: 18PX ;">ROHAN KUMAR </p>
+           <p style=" font-size: 18px;"> <i class="fa fa-map-marker text-red"> Village - Surajpur District 
+               - Mau <br>  Uttar Pradesh, India</i></p>
+           <p style=" font-size: 18px;"> <i class="fa fa-envelope  ">  rohanjaiswar29@gmail.com </i></p>
+           <p style=" font-size: 18px;"> <i class="fa fa-mobile "> +91 8808978383 / 8887923965 </i></p>            
+      
+       </div>
+       </div>
+       </div>
+       </div>
+{% endblock %}
+{% block css %}
+<style>
+    body{
+         background-color: #9A616D; 
+    }
+</style>
+{% endblock css %} 
+

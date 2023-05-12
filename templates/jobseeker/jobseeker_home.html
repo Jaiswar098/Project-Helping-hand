@@ -1,0 +1,45 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+
+{% block css %}
+    
+{% endblock %}
+{% block content %}
+
+<section class="vh-100" style="background-color: #9A616D;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col col-xl-10">
+            <div class="card" style="border-radius: 1rem;">
+              <div class="row g-0">
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col-md-9"> -->
+                <h6 class="display-3 small text-muted" style="margin-left: 25px;"><b>Job Seekers Application form</b>  </h6>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-15">
+                            
+                <div class="card">
+                    <div class="card-body">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% bootstrap_form form %}
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+<style>
+    body {
+        background-color: #9A616D;
+    }
+</style>
+{% endblock %}
+    

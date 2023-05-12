@@ -1,0 +1,127 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-5">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h1>Check Jobs</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9 mt-5">
+            <div class="container-fluid">
+                <div class="row">
+                    {% for item in job_filter.qs %}
+                    <div class="col-md-4 mb-5">
+                        <div class="card">
+                            {% if item.company_logo %}
+                            <img src="{{item.company_logo.url}}" alt="" class="card-img">
+                            {% endif %}
+                            <div class="card-body">
+                                <div class="card-title">
+                                    {{item.title}}
+                                </div>
+                                <p class="lead">
+                                    {{item.company_name}}
+                                </p>
+                                <a class="btn btn-primary"  href="{% url 'job' item.id %}">View Description</a>
+                                
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mt-5">
+            <form>
+                {% bootstrap_form job_filter.form %}
+                <button>filter</button>
+            </form>
+        </div>
+    </div>
+</div>
+<hr>
+{% if session.user_type != 'RC' %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Jobs Applied For</h1>
+            <div class="table-responsive">
+                <table class="table table-striped
+                table-hover	
+                table-borderless
+                table-primary
+                align-middle">
+                <thead class="table-dark">
+                    <caption>Responses Table</caption>
+                    <tr>
+                        <th>Job</th>
+                        <th>Location</th>
+                        <th>Company</th>
+                        <th>Dated</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    {% for item in job_applied %}
+                    <tr class="table-primary" >
+                        <td scope="row">
+                            {{item.job.title}}
+                        </td>
+                        <td>
+                            {{item.job.location}}
+                        </td>
+                        <td>
+                            {{item.job.company_name}}
+                        </td>
+                        <td>
+                            {{item.created_on}}
+                        </td>
+                        <td>
+                            {% if item.accepted %}
+                            <span class="badge bg-success">Accepted</span>
+                            {% else %}
+                            <span class="badge bg-warning">Pending</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">No jobs applied for</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    
+                </tfoot>
+            </table>
+        </div>
+        
+    </div>
+</div>
+</div>
+{% endif %}
+
+
+{% endblock %}
+
+{% block css %}
+<style>
+    .card-img {
+        aspect-ratio: 1.2/1 !important;
+    }
+</style>
+{% endblock css %}

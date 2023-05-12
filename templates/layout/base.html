@@ -1,0 +1,32 @@
+{% load django_bootstrap5 %}
+{% load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>
+        {% block title %} {% endblock %}
+    </title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% block css %} {% endblock %}
+</head>
+<body>
+    <header>
+        {% include 'partials/navbar.html' %}
+    </header>
+    {% bootstrap_messages %}
+    <main>
+        {% block content %} {% endblock %}
+        
+        <div class="conainer-flud" style="margin-top:1%">
+          </div>
+          {% include 'footer.html' %}
+    </main>
+      {% block js %} {% endblock %}
+</body>
+</html>

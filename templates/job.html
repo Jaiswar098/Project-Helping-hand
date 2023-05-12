@@ -1,0 +1,41 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% block content %}
+<div class="container">
+    <div class="row align-items-md-stretch my-5">
+        <div class="col-md-8 mx-auto">
+            <h1>{{job.company_name}}</h1>
+            <div class=" p-5 text-white bg-dark border rounded-3">
+            <img src="{{job.company_logo.url}}" class="img-fluid rounded-top" alt="">
+            <h2>{{job.title}}</h2>
+            <p>{{job.description}}</p>
+            {% if user.profile.user_type == 'JS' %}
+            <form method="post" action="{% url 'apply' job.id %}">
+                {% csrf_token %}
+                <button class="btn btn-light">Apply Now</button>
+            </form>
+            {% endif %}
+        </div>
+            <div
+                class=" p-5 text-white bg-dark border rounded-3">
+                <h2>Job requirements</h2>
+                <p>{{job.requirements|linebreaksbr}}</p>
+                <p class="form-text text-light">
+                    location: {{job.location}}
+                </p>
+                <hr>
+                Date: {{job.posted_date}}
+            </div>
+        </div>
+    </div>      
+</div>
+{% endblock %}
+
+{% block css %}
+<style>
+    .card-img {
+        aspect-ratio: 1.2/1 !important;
+    }
+</style>
+{% endblock css %}

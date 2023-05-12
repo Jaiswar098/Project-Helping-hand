@@ -1,0 +1,89 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% block content %} 
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mt-5">
+            <div class="container-fluid">
+                <div class="row">
+                    
+                    {% for item in appl %}
+                    <div class="col-md-6 mb-5">
+                        <div class="card">
+                            {% if item.company_logo %}
+                            <img src="{{item.company_logo.url}}" alt="" class="card-img">
+                            {% endif %}
+                            <div class="card-body">
+                                <div class="card-title">
+                                    🧑 {{item.person}} 
+                                    <br>📞 {{item.person.phone}}
+                                </div>
+                                <p class="">
+                                    {% if item.accepted %}
+                                    <span class="text-success">
+                                        accepted for {{item.job}} at {{item.job.company_name}}
+                                    </span>
+                                    {% else %}
+                                    <span class="text-danger">
+                                        rejected for {{item.job}} at {{item.job.company_name}}
+                                    </span>
+                                    {% endif %}
+                                </p>
+                                <a href="{% url 'accept' item.id %}" class="card-link">Accept</a>                                
+                                <a href="{% url 'reject' item.id %}" class="card-link">Reject</a>                                
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn btn-dark btn-sm" href="{% url 'job' item.id %}">View Description</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <a href="{% url 'create_job' %}">Create New Job Post</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mt-5">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Jobs Posted</h1>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-primary">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Company</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Location</th>
+                                    <th scope="col">Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for j in jobs %}
+                                <tr class="">
+                                    <td scope="row">{{j.company_name}}</td>
+                                    <td>{{j.title}}</td>
+                                    <td>{{j.location}}</td>
+                                    <td><a href="{% url 'delete_job' j.id %}">Delete</a></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block css %}
+<style>
+    .card-img {
+        aspect-ratio: 1.2/1 !important;
+    }
+</style>
+{% endblock css %}

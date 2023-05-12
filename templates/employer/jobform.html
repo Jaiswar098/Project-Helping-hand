@@ -1,0 +1,47 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+
+{% block css %}
+    
+{% endblock %}
+{% block content %}
+<section class="vh-100" style="background-color: #9A616D;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col col-xl-10">
+            <div class="card" style="border-radius: 1rem;">
+              <div class="row g-0">
+                <!-- <div class="col-md-6 col-lg-5 d-none d-md-block"> -->
+          
+                    <!-- <img src="{% static 'images/login.webp' %}"
+                    alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" /> -->
+                      <h6 class="display-3 small text-muted" style=" margin-left: 10rem; "><b>Employer Forms </b> </h6>
+                      <div class="container">
+        <div class="row">
+            <div class="col-md-15">
+                
+                <div class="card">
+                    <div class="card-body">
+                        <form method="post" enctype="multipart/form-data" style="margin-left: 10px; margin-left: 100px; margin-right: 100px;">
+
+                            {% csrf_token %}
+                            {% bootstrap_form form %}
+                            <button type="submit" class="btn btn-primary">SAVE</button>                     
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <style>
+    body {
+        background-color: #9A616D;
+    }
+</style>
+{% endblock %}
+    
