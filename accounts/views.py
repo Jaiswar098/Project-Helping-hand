@@ -16,6 +16,9 @@ def index(request):
 
 @login_required
 def create_profile(request):
+    profile = Profile.objects.filter(user=request.user).first()
+    if profile is not None:
+        return redirect('update_profile')
     form = ProfileForm(request.POST or None, request.FILES or None)
     if request.method == 'POST':
         if form.is_valid():
@@ -23,7 +26,7 @@ def create_profile(request):
             profile.user = request.user
             profile.save()
             
-            return redirect('/accounts/')
+            return redirect('/')
     ctx = {'form': form}
 
     return render(request, 'account/create_profile.html', ctx)
@@ -38,7 +41,7 @@ def update_profile(request):
             if form.is_valid():
                 form.save()
                 return redirect('/accounts/')
-        ctx = {'form': form}
+        ctx = {'form': form, 'profile': profile}
         return render(request, 'account/update_profile.html', ctx)
     except Profile.DoesNotExist:
         return redirect('/accounts/profile/create')

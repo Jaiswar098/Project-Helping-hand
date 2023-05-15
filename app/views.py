@@ -30,14 +30,19 @@ def getUserType(request):
 @login_required
 def landing(request):
     try:
+        print('checking profile')
         profile = Profile.objects.filter(user=request.user).first()
+        print(profile)
         if profile is not None:
             request.session['user_type'] = profile.user_type
             if profile.user_type == 'JS':
                 return redirect('index')
             else:
-                return redirect('employer_home')
-    except Profile.DoesNotExist:
+                return redirect('applicants')
+        else:
+            return redirect('create_profile')
+    except Exception as e:
+        print(e)
         return redirect('create_profile')
     return render(request, 'landing.html')
 

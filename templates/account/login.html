@@ -28,16 +28,17 @@
                 {% csrf_token %}
                 {% bootstrap_form form layout='floating' %}
                 {% if redirect_field_value %}
-                   <input type="email" id="form2Example17" class="form-control form-control-lg" />
-                    <label class="form-label" for="form2Example17">Email address</label>
-                  </div>
+                   <!-- <input type="email" id="form2Example17" class="form-control form-control-lg" />
+                    <label class="form-label" for="form2Example17">Email address</label> -->
+                  
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                 {% endif %}
                 {% bootstrap_button button_type="submit"  content="Login" %}
+            </div>
             </form>
             {% get_providers as socialaccount_providers %}
             {% if socialaccount_providers %}
-           <a href="{% provider_login_url 'github' %}" >Login via Github</a>
+           <!-- <a href="{% provider_login_url 'github' %}" >Login via Github</a> -->
             {% endif %} 
             
         </div>

@@ -34,18 +34,19 @@
                 {% endif %}
                 
                 {% bootstrap_button button_type="submit" content="Sign up" %}
+                {% trans 'OR' %}
+                
+                    <a class="btn btn-outline-primary" href="{% url 'account_login' %}">{% trans "login to account" %}</a>
+                
             </form>
             <div class="card-body">
                 {% get_providers as socialaccount_providers %}
                 {% if socialaccount_providers %}
-                <div class="socialaccount_providers">
+                <!-- <div class="socialaccount_providers">
                     <a class="btn btn-block btn-dark" href="{% provider_login_url 'github' %}">Github</a>
-                </div>
+                </div> -->
                 {% endif %}
-                {% trans 'or' %}
-                <div>
-                    <a class="btn btn-outline-primary" href="{% url 'account_login' %}">{% trans "login to account" %}</a>
-                </div>
+                
             </div>
 
         </div>

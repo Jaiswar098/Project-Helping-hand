@@ -7,7 +7,9 @@ from .forms import PersonForm
 from django.contrib import messages
 from .filters import ApplicationFilter
 from jobseeker.forms import JobForm
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def home(request):
     # add person form
     form = PersonForm(request.POST or None, request.FILES or None)
@@ -17,15 +19,17 @@ def home(request):
             emp.user = request.user # add the user
             emp.save() # save the model
             messages.success(request, 'Your details added successfully')
-            return redirect('employer_home')
+            return redirect('applicants')
         else:
             messages.error(request, 'Error adding your details')
     ctx = {'form': form}
     return render(request, 'employer/employer_home.html', ctx)
 
+@login_required
 def jobdesc(request):
     return (request,'employer/jobdesc.html')
 
+@login_required
 def applicants(request):
     # if person profile is set
     try:
@@ -47,6 +51,9 @@ def applicants(request):
                         'jobs': jobs,
                     }
                     return render(request, 'employer/applicants.html', ctx)
+                else:
+                    messages.error(request, 'you have not filled the employer form')
+                    return redirect('employer_home')
             except Employer.DoesNotExist:
                 messages.error(request, 'you have not filled the employer form')
                 return redirect('employer_home')    
@@ -58,6 +65,7 @@ def applicants(request):
         return redirect('create_profile')
     return render(request, 'employer/applicants.html')
 
+@login_required
 def create_job(request):
     # if person profile is set
     if request.method == 'POST':
@@ -75,6 +83,7 @@ def create_job(request):
     ctx = {'form': form}
     return render(request, 'employer/jobform.html', ctx)
 
+@login_required
 def accept(request, id):
     applicant = Application.objects.get(id=id)
     applicant.accepted = True
@@ -82,6 +91,7 @@ def accept(request, id):
     messages.success(request, 'Applicant accepted')
     return redirect('applicants')
 
+@login_required
 def reject(request, id):
     applicant = Application.objects.get(id=id)
     applicant.accepted = False
@@ -89,6 +99,7 @@ def reject(request, id):
     messages.success(request, 'Applicant rejected')
     return redirect('applicants')
 
+@login_required
 def delete_job(request, id):
     job = Job.objects.get(id=id)
     job.delete()

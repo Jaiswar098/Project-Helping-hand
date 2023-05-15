@@ -7,7 +7,7 @@ from .models import Job
 class PersonAdmin(admin.ModelAdmin):
     '''Admin View for Person'''
 
-    list_display = ('image','title','firstname','lastname','email','phone','address',
+    list_display = ('image','title','firstname','lastname' ,'email','phone','address',
                   'city','state','pincode')
     
 @admin.register(Job)

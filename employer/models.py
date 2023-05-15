@@ -6,8 +6,6 @@ from django.contrib.auth.models import User
 class titleChoices(models.TextChoices):
     MRS = 'Mrs'
     MR = 'Mr'
-    MS = 'Ms'
-    DR = 'Dr'
 class Person(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='employer')
     image = models.ImageField(upload_to='images/', blank=False, null=True)
