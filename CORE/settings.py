@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'employer',
 ]
 
-SITE_ID = 3
+SITE_ID = 1
 
 SOCIALACCOUNT_PROVIDERS ={
     'github':{},
@@ -64,6 +64,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'CORE.urls'
